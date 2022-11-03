@@ -1,0 +1,136 @@
+<p>
+    Murdoch's of @{body('Parse_JSON')?['officeLocation']}<br>
+    @{body('Parse_JSON')?['displayName']}<br>
+    @{body('Parse_JSON')?['streetAddress']}<br>
+    @{body('Parse_JSON')?['city']}, @{body('Parse_JSON')?['state']} @{body('Parse_JSON')?['postalCode']}<br>
+    @{body('Parse_JSON')?['onPremisesExtensionAttributes']?['extensionAttribute12']}<br>
+    <br>
+    <html lang=eng>
+    <head>
+    </head>
+    
+    <div style="overflow-x:auto;">
+    <table border ="1">
+        <tr>
+            <th height="27" width="256" align="center" valign="middle">Dell</th>
+            <th width="69" align="center" valign="middle">Quanity</th>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">2330 | 2327 (PK941)</td>
+            <td align="center" valign="middle"></td>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">2360 | 3460 | 3465 (M11XH)</td>
+            <td align="center" valign="middle"></td>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <th height="27" align="center" valign="middle">HP LaserJet</th>
+            <th width="69" align="center" valign="middle">Quanity</th>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M401 | M425 (80)</td>
+            <td align="center" valign="middle"></td>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M402 | M426 (26)</td>
+            <td align="center" valign="middle"></td>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M404 | M406 | M428 | M430 (58)</td>
+            <td align="center" valign="middle"></td>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">P2035 | P2055 (05)</td>
+            <td align="center" valign="middle"></td>
+            <th colspan ='3'></th>
+        </tr>
+        <tr>
+            <th height="27" width="256" align="center" valign="middle">HP Color LaserJet</th>
+            <th width="69" align="center" valign="middle">Black</th>
+            <th width="69" align="center" valign="middle">Cyan</th>
+            <th width="69" align="center" valign="middle">Magenta</th>
+            <th width="69" align="center" valign="middle">Yellow</th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M251 | M276 (131)</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M254 | M281 (202)</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M255 | M283 (206)</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M452 | M477 (410)</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M454 | M455 | M479 | M480 (414)</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">M553 | M577 (278)</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <th height="27" width="256" align="center" valign="middle">KYOCERA & Xerox</th>
+            <th width="69" align="center" valign="middle">Black</th>
+            <th width="69" align="center" valign="middle">Cyan</th>
+            <th width="69" align="center" valign="middle">Magenta</th>
+            <th width="69" align="center" valign="middle">Yellow</th>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">ECOsys P6035cdn Color</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">ECOsys P6235cdn Color</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+        <tr>
+            <td align="left" valign="middle">Xerox ColorQube 8570/8580 wax</td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle"></td>
+        </tr>
+    </table>
+    </div>
+        <br>
+    <strong>Additional Requests:</strong><br>
+    <br>@{outputs('Get_response_details')?['body/re27fa40f2862481188a956849e57da80']}
+        </p>
