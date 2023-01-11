@@ -31,12 +31,12 @@
         </tr>
         <tr>
             <td align="left" valign="middle">2330 | 2327 - (PK941)</td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%PK941-Toner%'</td>
             <td colspan='3'></td>
         </tr>
         <tr>
             <td align="left" valign="middle">2360 | 3460 | 3465 - (M11XH)</td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%M11XH-Toner%'</td>
             <td colspan='3'></td>
         </tr>
         <tr>
@@ -46,22 +46,22 @@
         </tr>
         <tr>
             <td align="left" valign="middle">M401 | M425 - (80)</td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%80-Toner%'</td>
             <td colspan='3'></td>
         </tr>
         <tr>
             <td align="left" valign="middle">M402 | M426 - (26)</td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%26-Toner%'</td>
             <td colspan='3'></td>
         </tr>
         <tr>
             <td align="left" valign="middle">M404 | M406 | M428 | M430 - (58)</td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%58-Toner%'</td>
             <td colspan='3'></td>
         </tr>
         <tr>
             <td align="left" valign="middle">P2035 | P2055 - (05)</td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%05-Toner%'</td>
             <td colspan='3'></td>
         </tr>
         <tr>
@@ -73,52 +73,52 @@
         </tr>
         <tr>
             <td align="left" valign="middle">M251 | M276 - (131)</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%131B-Toner%'</td>
+            <td align="center" valign="middle">'%131C-Toner%'</td>
+            <td align="center" valign="middle">'%131M-Toner%'</td>
+            <td align="center" valign="middle">'%131Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">M254 | M281 - (202)</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%202B-Toner%'</td>
+            <td align="center" valign="middle">'%202C-Toner%'</td>
+            <td align="center" valign="middle">'%202M-Toner%'</td>
+            <td align="center" valign="middle">'%202Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">M255 | M283 - (206)</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%206B-Toner%'</td>
+            <td align="center" valign="middle">'%206C-Toner%'</td>
+            <td align="center" valign="middle">'%206M-Toner%'</td>
+            <td align="center" valign="middle">'%206Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">M452 | M477 - (410)</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%410B-Toner%'</td>
+            <td align="center" valign="middle">'%410C-Toner%'</td>
+            <td align="center" valign="middle">'%410M-Toner%'</td>
+            <td align="center" valign="middle">'%410Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">M454 | M455 | M479 | M480 - (414)</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%414B-Toner%'</td>
+            <td align="center" valign="middle">'%414C-Toner%'</td>
+            <td align="center" valign="middle">'%414M-Toner%'</td>
+            <td align="center" valign="middle">'%414Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">M553 | M577 - (278)</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%278B-Toner%'</td>
+            <td align="center" valign="middle">'%278C-Toner%'</td>
+            <td align="center" valign="middle">'%278M-Toner%'</td>
+            <td align="center" valign="middle">'%278Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">M554 | M555 | M578 - (212)</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%212B-Toner%'</td>
+            <td align="center" valign="middle">'%212C-Toner%'</td>
+            <td align="center" valign="middle">'%212M-Toner%'</td>
+            <td align="center" valign="middle">'%212Y-Toner%'</td>
         </tr>
         <tr>
             <th height="29" width="257" align="left" valign="middle">KYOCERA & Xerox</th>
@@ -129,24 +129,24 @@
         </tr>
         <tr>
             <td align="left" valign="middle">ECOsys P6035cdn Color</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%6035B-Toner%'</td>
+            <td align="center" valign="middle">'%6035C-Toner%'</td>
+            <td align="center" valign="middle">'%6035M-Toner%'</td>
+            <td align="center" valign="middle">'%6035Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">ECOsys P6235cdn Color</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%6235B-Toner%'</td>
+            <td align="center" valign="middle">'%6235C-Toner%'</td>
+            <td align="center" valign="middle">'%6235M-Toner%'</td>
+            <td align="center" valign="middle">'%6235Y-Toner%'</td>
         </tr>
         <tr>
             <td align="left" valign="middle">Xerox ColorQube 8570/8580 wax</td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
-            <td align="center" valign="middle"></td>
+            <td align="center" valign="middle">'%xeroxB-Toner%'</td>
+            <td align="center" valign="middle">'%xeroxC-Toner%'<</td>
+            <td align="center" valign="middle">'%xeroxM-Toner%'<</td>
+            <td align="center" valign="middle">'%xeroxY-Toner%'<</td>
         </tr>
     </table>
 </div>
