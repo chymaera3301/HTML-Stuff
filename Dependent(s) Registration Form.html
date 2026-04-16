@@ -1,656 +1,1036 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Employee Dependent Registration</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --bg: #f5f3ef;
-    --surface: #ffffff;
-    --surface-2: #f0ede8;
-    --border: #d9d4cc;
-    --border-focus: #2c4a6e;
-    --text: #1a1a1a;
-    --text-muted: #6b6560;
-    --accent: #2c4a6e;
-    --accent-light: #e8edf4;
-    --accent-hover: #1e3550;
-    --danger: #c0392b;
-    --danger-light: #fdf0ef;
-    --success: #1e6b4a;
-    --success-light: #e8f5ee;
-    --child-accent: #5a3e8a;
-    --child-light: #f0ebf8;
-    --other-accent: #7a4f1e;
-    --other-light: #faf3e8;
-    --radius: 6px;
-    --radius-lg: 12px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
-    --shadow-lg: 0 2px 8px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.06);
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Dependent Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f5f3ef;
+        --surface: #ffffff;
+        --surface-2: #f0ede8;
+        --border: #d9d4cc;
+        --border-focus: #2c4a6e;
+        --text: #1a1a1a;
+        --text-muted: #6b6560;
+        --accent: #2c4a6e;
+        --accent-light: #e8edf4;
+        --accent-hover: #1e3550;
+        --danger: #c0392b;
+        --danger-light: #fdf0ef;
+        --success: #1e6b4a;
+        --success-light: #e8f5ee;
+        --child-accent: #5a3e8a;
+        --child-light: #f0ebf8;
+        --other-accent: #7a4f1e;
+        --other-light: #faf3e8;
+        --radius: 6px;
+        --radius-lg: 12px;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+        --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.06);
+      }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 40px 20px 80px;
-  }
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        padding: 40px 20px 80px;
+      }
 
-  /* ── Page Header ── */
-  .page-header { max-width: 680px; margin: 0 auto 36px; }
-  .page-header .org-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
-  }
-  .page-header h1 {
-    font-family: 'Libre Baskerville', serif; font-size: 28px;
-    font-weight: 700; color: var(--accent); line-height: 1.25;
-  }
-  .page-header p { margin-top: 10px; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+      /* ── Page Header ── */
+      .page-header {
+        max-width: 680px;
+        margin: 0 auto 36px;
+      }
 
-  /* ── Card ── */
-  .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); box-shadow: var(--shadow);
-    max-width: 680px; margin: 0 auto 20px; overflow: hidden;
-  }
-  .card-header {
-    padding: 18px 28px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .card-header .icon {
-    width: 28px; height: 28px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; flex-shrink: 0;
-  }
-  .card-header h2 { font-family: 'Libre Baskerville', serif; font-size: 16px; font-weight: 700; color: var(--text); }
-  .card-header .badge {
-    margin-left: auto; font-size: 11px; font-weight: 600;
-    letter-spacing: 0.05em; padding: 3px 9px; border-radius: 20px;
-    color: var(--text-muted); background: var(--surface-2);
-  }
-  .card-body { padding: 24px 28px; }
+      .page-header .org-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 10px;
+      }
 
-  /* ── Terms ── */
-  .terms-icon { background: var(--accent-light); color: var(--accent); }
-  .terms-box {
-    background: var(--accent-light); border: 1px solid #c4d3e6;
-    border-radius: var(--radius); padding: 16px 18px; margin-bottom: 18px;
-    font-size: 13.5px; color: #2a3d52; line-height: 1.6;
-  }
-  .terms-box a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
-  .terms-box a:hover { color: var(--accent-hover); }
+      .page-header h1 {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1.25;
+      }
 
-  .checkbox-row { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; user-select: none; }
-  .checkbox-row input[type="checkbox"] {
-    width: 18px; height: 18px; margin-top: 1px;
-    accent-color: var(--accent); cursor: pointer; flex-shrink: 0;
-  }
-  .checkbox-row .check-label { font-size: 14px; color: var(--text); line-height: 1.5; }
-  .checkbox-row .check-label strong { color: var(--accent); }
-  .terms-error { color: var(--danger); font-size: 12.5px; margin-top: 8px; display: none; }
-  .terms-error.visible { display: block; }
+      .page-header p {
+        margin-top: 10px;
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
 
-  /* ── Yes / No ── */
-  .question-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .question-row .q-text { font-size: 14.5px; font-weight: 500; color: var(--text); line-height: 1.4; }
-  .toggle-group { display: flex; gap: 8px; flex-shrink: 0; }
-  .toggle-btn {
-    padding: 7px 18px; border-radius: 20px; border: 1.5px solid var(--border);
-    background: transparent; font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 500; color: var(--text-muted);
-    cursor: pointer; transition: all 0.15s ease;
-  }
-  .toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .toggle-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+      /* ── Card ── */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        max-width: 680px;
+        margin: 0 auto 20px;
+        overflow: hidden;
+      }
 
-  /* ── Step 2 locked state ── */
-  .card.locked {
-    opacity: 0.5;
-    pointer-events: none;
-    user-select: none;
-  }
-  .card.locked .card-header {
-    background: var(--surface-2);
-  }
-  .lock-notice {
-    display: none;
-    margin-top: 0;
-    padding: 13px 18px;
-    background: #fdf8ec;
-    border-top: 1px solid #e8d98a;
-    font-size: 13px;
-    color: #7a6010;
-    align-items: center;
-    gap: 8px;
-  }
-  .lock-notice.visible { display: flex; }
+      .card-header {
+        padding: 18px 28px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
 
-  /* ── No-dep note ── */
-  .no-dep-note {
-    display: none; margin-top: 16px; padding: 14px 16px;
-    background: var(--surface-2); border: 1px solid var(--border);
-    border-radius: var(--radius); font-size: 13.5px; color: var(--text-muted);
-  }
-  .no-dep-note.visible { display: block; }
+      .card-header .icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        flex-shrink: 0;
+      }
 
-  /* ── Dep sections container ── */
-  #depSections { margin-top: 20px; display: none; flex-direction: column; gap: 14px; }
-  #depSections.visible { display: flex; }
+      .card-header h2 {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+      }
 
-  /* ── Add-type buttons ── */
-  .add-type-row { display: flex; gap: 10px; flex-wrap: wrap; }
-  .add-type-btn {
-    display: flex; align-items: center; gap: 7px;
-    padding: 9px 16px; border-radius: var(--radius);
-    border: 1.5px dashed var(--border); background: transparent;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
-    cursor: pointer; color: var(--text-muted); transition: all 0.15s ease;
-  }
-  .add-type-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-  .add-type-btn.hidden { display: none; }
+      .card-header .badge {
+        margin-left: auto;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        padding: 3px 9px;
+        border-radius: 20px;
+        color: var(--text-muted);
+        background: var(--surface-2);
+      }
 
-  /* ── Dep blocks ── */
-  .dep-block {
-    border-radius: var(--radius-lg); overflow: hidden;
-    border: 1.5px solid var(--border); display: none;
-  }
-  .dep-block.visible { display: block; }
-  .dep-block.spouse-block { border-color: #c4d3e6; }
-  .dep-block.child-block  { border-color: #cfc5e0; }
-  .dep-block.other-block  { border-color: #dfd0b8; }
+      .card-body {
+        padding: 24px 28px;
+      }
 
-  .dep-block-header {
-    display: flex; align-items: center; padding: 13px 18px; gap: 10px;
-  }
-  .spouse-block .dep-block-header { background: var(--accent-light); border-bottom: 1px solid #c4d3e6; }
-  .child-block  .dep-block-header { background: var(--child-light);  border-bottom: 1px solid #cfc5e0; }
-  .other-block  .dep-block-header { background: var(--other-light);  border-bottom: 1px solid #dfd0b8; }
+      /* ── Terms ── */
+      .terms-icon {
+        background: var(--accent-light);
+        color: var(--accent);
+      }
 
-  .dep-tag {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
-  }
-  .tag-spouse { background: #d6e4f5; color: var(--accent); }
-  .tag-child  { background: #e0d8f0; color: var(--child-accent); }
-  .tag-other  { background: #eeddc8; color: var(--other-accent); }
+      .terms-box {
+        background: var(--accent-light);
+        border: 1px solid #c4d3e6;
+        border-radius: var(--radius);
+        padding: 16px 18px;
+        margin-bottom: 18px;
+        font-size: 13.5px;
+        color: #2a3d52;
+        line-height: 1.6;
+      }
 
-  .dep-limit { font-size: 12px; color: var(--text-muted); font-style: italic; }
+      .terms-box a {
+        color: var(--accent);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
 
-  .dep-block-remove {
-    margin-left: auto; background: none; border: none; cursor: pointer;
-    color: var(--text-muted); font-size: 13px; padding: 3px 8px;
-    border-radius: 4px; font-family: 'DM Sans', sans-serif;
-    font-weight: 500; transition: background 0.15s, color 0.15s; white-space: nowrap;
-  }
-  .dep-block-remove:hover { background: var(--danger-light); color: var(--danger); }
+      .terms-box a:hover {
+        color: var(--accent-hover);
+      }
 
-  .dep-block-body { padding: 18px; background: var(--surface); }
+      .checkbox-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        user-select: none;
+      }
 
-  /* ── Fields ── */
-  .field-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .field-group.three-col { grid-template-columns: 1fr 1fr 1fr; }
+      .checkbox-row input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-top: 1px;
+        accent-color: var(--accent);
+        cursor: pointer;
+        flex-shrink: 0;
+      }
 
-  .field label {
-    display: block; font-size: 11.5px; font-weight: 600;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 6px;
-  }
-  .field input {
-    width: 100%; padding: 9px 12px; border: 1.5px solid var(--border);
-    border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
-    font-size: 14px; color: var(--text); background: var(--surface);
-    transition: border-color 0.15s, box-shadow 0.15s; outline: none;
-  }
-  .field input:focus { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(44,74,110,0.1); }
-  .field input.invalid { border-color: var(--danger); }
+      .checkbox-row .check-label {
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.5;
+      }
 
-  /* ── Child entries ── */
-  .child-entry {
-    border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 14px; margin-bottom: 12px; background: var(--surface-2);
-  }
-  .child-entry:last-child { margin-bottom: 0; }
-  .child-entry-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-  .child-entry-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--child-accent); }
-  .remove-child-btn {
-    background: none; border: none; cursor: pointer; color: var(--text-muted);
-    font-size: 13px; padding: 2px 6px; border-radius: 4px;
-    transition: background 0.15s, color 0.15s; font-family: 'DM Sans', sans-serif; font-weight: 500;
-  }
-  .remove-child-btn:hover { background: var(--danger-light); color: var(--danger); }
+      .checkbox-row .check-label strong {
+        color: var(--accent);
+      }
 
-  .add-child-btn {
-    margin-top: 14px; display: flex; align-items: center; gap: 6px;
-    background: none; border: 1.5px dashed var(--child-accent);
-    border-radius: var(--radius); padding: 9px 14px;
-    color: var(--child-accent); font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 600; cursor: pointer; width: 100%;
-    justify-content: center; transition: background 0.15s;
-  }
-  .add-child-btn:hover { background: var(--child-light); }
+      .terms-error {
+        color: var(--danger);
+        font-size: 12.5px;
+        margin-top: 8px;
+        display: none;
+      }
 
-  /* ── Submit ── */
-  .submit-wrap { max-width: 680px; margin: 24px auto 0; }
-  .submit-btn {
-    width: 100%; padding: 14px; background: var(--accent); color: white;
-    border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
-    font-size: 15px; font-weight: 600; cursor: pointer;
-    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
-    box-shadow: var(--shadow); letter-spacing: 0.02em;
-  }
-  .submit-btn:hover { background: var(--accent-hover); box-shadow: var(--shadow-lg); }
-  .submit-btn:active { transform: scale(0.99); }
-  .submit-btn:disabled { background: #9aabba; cursor: not-allowed; box-shadow: none; transform: none; }
+      .terms-error.visible {
+        display: block;
+      }
 
-  .result-msg {
-    display: none; max-width: 680px; margin: 20px auto 0;
-    padding: 18px 22px; border-radius: var(--radius-lg);
-    font-size: 14px; font-weight: 500; line-height: 1.5;
-  }
-  .result-msg.success { background: var(--success-light); border: 1px solid #a8d5bd; color: var(--success); }
-  .result-msg.error   { background: var(--danger-light);  border: 1px solid #e8b4af; color: var(--danger); }
-  .result-msg.visible { display: block; }
+      /* ── Yes / No ── */
+      .question-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
 
-  .spinner {
-    display: inline-block; width: 14px; height: 14px;
-    border: 2px solid rgba(255,255,255,0.4); border-top-color: white;
-    border-radius: 50%; animation: spin 0.7s linear infinite;
-    vertical-align: middle; margin-right: 6px;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+      .question-row .q-text {
+        font-size: 14.5px;
+        font-weight: 500;
+        color: var(--text);
+        line-height: 1.4;
+      }
 
-  @media (max-width: 520px) {
-    .field-group, .field-group.three-col { grid-template-columns: 1fr; }
-    .card-body { padding-inline: 16px; }
-    .card-header { padding-inline: 16px; }
-    .dep-block-body { padding: 14px; }
-    .add-type-row { flex-direction: column; }
-    .add-type-btn { width: 100%; justify-content: center; }
-  }
-</style>
-</head>
-<body>
+      .toggle-group {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
 
-<div class="page-header">
-  <div class="org-label">Team Member Discount Program</div>
-  <h1>Dependent Registration</h1>
-  <p>Complete this form to add dependents to your employee account to utilize the discount. Submitting this form will reset your current dependent list. All entries are subject to verification.</p>
-</div>
+      .toggle-btn {
+        padding: 7px 18px;
+        border-radius: 20px;
+        border: 1.5px solid var(--border);
+        background: transparent;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
 
-<!-- Step 1: Terms -->
-<div class="card">
-  <div class="card-header">
-    <div class="icon terms-icon">📋</div>
-    <h2>Terms &amp; Conditions</h2>
-    <span class="badge">Step 1</span>
-  </div>
-  <div class="card-body">
-    <div class="terms-box">
-      Before registering dependents, please review the
-      <a href="https://sharepoint.com/sites/document"
-         target="_blank" rel="noopener noreferrer">
-        Team Member Purchases Policy ↗
-      </a>
-      on SharePoint. This document outlines eligibility requirements, permitted discount usage, and your responsibilities as the sponsoring employee.
+      .toggle-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .toggle-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+
+      /* ── Step 2 locked state ── */
+      .card.locked {
+        opacity: 0.5;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .card.locked .card-header {
+        background: var(--surface-2);
+      }
+
+      .lock-notice {
+        display: none;
+        margin-top: 0;
+        padding: 13px 18px;
+        background: #fdf8ec;
+        border-top: 1px solid #e8d98a;
+        font-size: 13px;
+        color: #7a6010;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .lock-notice.visible {
+        display: flex;
+      }
+
+      /* ── No-dep note ── */
+      .no-dep-note {
+        display: none;
+        margin-top: 16px;
+        padding: 14px 16px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        font-size: 13.5px;
+        color: var(--text-muted);
+      }
+
+      .no-dep-note.visible {
+        display: block;
+      }
+
+      /* ── Dep sections container ── */
+      #depSections {
+        margin-top: 20px;
+        display: none;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      #depSections.visible {
+        display: flex;
+      }
+
+      /* ── Add-type buttons ── */
+      .add-type-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .add-type-btn {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 9px 16px;
+        border-radius: var(--radius);
+        border: 1.5px dashed var(--border);
+        background: transparent;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--text-muted);
+        transition: all 0.15s ease;
+      }
+
+      .add-type-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-light);
+      }
+
+      .add-type-btn.hidden {
+        display: none;
+      }
+
+      /* ── Dep blocks ── */
+      .dep-block {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1.5px solid var(--border);
+        display: none;
+      }
+
+      .dep-block.visible {
+        display: block;
+      }
+
+      .dep-block.spouse-block {
+        border-color: #c4d3e6;
+      }
+
+      .dep-block.child-block {
+        border-color: #cfc5e0;
+      }
+
+      .dep-block.other-block {
+        border-color: #dfd0b8;
+      }
+
+      .dep-block-header {
+        display: flex;
+        align-items: center;
+        padding: 13px 18px;
+        gap: 10px;
+      }
+
+      .spouse-block .dep-block-header {
+        background: var(--accent-light);
+        border-bottom: 1px solid #c4d3e6;
+      }
+
+      .child-block .dep-block-header {
+        background: var(--child-light);
+        border-bottom: 1px solid #cfc5e0;
+      }
+
+      .other-block .dep-block-header {
+        background: var(--other-light);
+        border-bottom: 1px solid #dfd0b8;
+      }
+
+      .dep-tag {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 20px;
+      }
+
+      .tag-spouse {
+        background: #d6e4f5;
+        color: var(--accent);
+      }
+
+      .tag-child {
+        background: #e0d8f0;
+        color: var(--child-accent);
+      }
+
+      .tag-other {
+        background: #eeddc8;
+        color: var(--other-accent);
+      }
+
+      .dep-limit {
+        font-size: 12px;
+        color: var(--text-muted);
+        font-style: italic;
+      }
+
+      .dep-block-remove {
+        margin-left: auto;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-muted);
+        font-size: 13px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 500;
+        transition: background 0.15s, color 0.15s;
+        white-space: nowrap;
+      }
+
+      .dep-block-remove:hover {
+        background: var(--danger-light);
+        color: var(--danger);
+      }
+
+      .dep-block-body {
+        padding: 18px;
+        background: var(--surface);
+      }
+
+      /* ── Fields ── */
+      .field-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .field-group.three-col {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .field label {
+        display: block;
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+
+      .field input {
+        width: 100%;
+        padding: 9px 12px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        background: var(--surface);
+        transition: border-color 0.15s, box-shadow 0.15s;
+        outline: none;
+      }
+
+      .field input:focus {
+        border-color: var(--border-focus);
+        box-shadow: 0 0 0 3px rgba(44, 74, 110, 0.1);
+      }
+
+      .field input.invalid {
+        border-color: var(--danger);
+      }
+
+      /* ── Child entries ── */
+      .child-entry {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 14px;
+        margin-bottom: 12px;
+        background: var(--surface-2);
+      }
+
+      .child-entry:last-child {
+        margin-bottom: 0;
+      }
+
+      .child-entry-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .child-entry-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--child-accent);
+      }
+
+      .remove-child-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text-muted);
+        font-size: 13px;
+        padding: 2px 6px;
+        border-radius: 4px;
+        transition: background 0.15s, color 0.15s;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 500;
+      }
+
+      .remove-child-btn:hover {
+        background: var(--danger-light);
+        color: var(--danger);
+      }
+
+      .add-child-btn {
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: none;
+        border: 1.5px dashed var(--child-accent);
+        border-radius: var(--radius);
+        padding: 9px 14px;
+        color: var(--child-accent);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        justify-content: center;
+        transition: background 0.15s;
+      }
+
+      .add-child-btn:hover {
+        background: var(--child-light);
+      }
+
+      /* ── Submit ── */
+      .submit-wrap {
+        max-width: 680px;
+        margin: 24px auto 0;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: var(--radius);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+        box-shadow: var(--shadow);
+        letter-spacing: 0.02em;
+      }
+
+      .submit-btn:hover {
+        background: var(--accent-hover);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .submit-btn:active {
+        transform: scale(0.99);
+      }
+
+      .submit-btn:disabled {
+        background: #9aabba;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .result-msg {
+        display: none;
+        max-width: 680px;
+        margin: 20px auto 0;
+        padding: 18px 22px;
+        border-radius: var(--radius-lg);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      .result-msg.success {
+        background: var(--success-light);
+        border: 1px solid #a8d5bd;
+        color: var(--success);
+      }
+
+      .result-msg.error {
+        background: var(--danger-light);
+        border: 1px solid #e8b4af;
+        color: var(--danger);
+      }
+
+      .result-msg.visible {
+        display: block;
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 520px) {
+
+        .field-group,
+        .field-group.three-col {
+          grid-template-columns: 1fr;
+        }
+
+        .card-body {
+          padding-inline: 16px;
+        }
+
+        .card-header {
+          padding-inline: 16px;
+        }
+
+        .dep-block-body {
+          padding: 14px;
+        }
+
+        .add-type-row {
+          flex-direction: column;
+        }
+
+        .add-type-btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-header">
+      <div class="org-label">Team Member Discount Program</div>
+      <h1>Dependent Registration</h1>
+      <p>Complete this form to add dependents to your employee account to utilize the discount. Submitting this form will reset your current dependent list. All entries are subject to verification.</p>
     </div>
-    <label class="checkbox-row">
-      <input type="checkbox" id="termsCheck" onchange="onTermsChange()"/>
-      <span class="check-label">I have read and agree to the <strong>Team Member Purchases Policy</strong> and confirm that all information I provide is accurate.</span>
-    </label>
-    <div class="terms-error" id="termsError">⚠ You must accept the terms to proceed.</div>
-  </div>
-</div>
-
-<!-- Step 2: Dependents -->
-<div class="card locked" id="dependentsCard">
-  <div class="card-header">
-    <div class="icon" style="background:#f0f0ee;color:#555;">👥</div>
-    <h2>Dependents</h2>
-    <span class="badge">Step 2</span>
-  </div>
-
-  <!-- Lock notice shown when terms not yet accepted -->
-  <div class="lock-notice visible" id="lockNotice">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-    Please read and accept the Terms &amp; Conditions above to continue.
-  </div>
-
-  <div class="card-body">
-    <div class="question-row">
-      <span class="q-text">Do you have any dependents to add?</span>
-      <div class="toggle-group">
-        <button class="toggle-btn" id="btnYes" type="button" onclick="setHasDeps(true)">Yes</button>
-        <button class="toggle-btn active" id="btnNo" type="button" onclick="setHasDeps(false)">No</button>
+    <!-- Step 1: Terms -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon terms-icon">📋</div>
+        <h2>Terms &amp; Conditions</h2>
+        <span class="badge">Step 1</span>
+      </div>
+      <div class="card-body">
+        <div class="terms-box"> Before registering dependents, please review the <a href="https://sharepoint.com/sites/document" target="_blank" rel="noopener noreferrer"> Team Member Purchases Policy ↗ </a> on SharePoint. This document outlines eligibility requirements, permitted discount usage, and your responsibilities as the sponsoring employee. </div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="termsCheck" onchange="onTermsChange()" />
+          <span class="check-label">I have read and agree to the <strong>Team Member Purchases Policy</strong> and confirm that all information I provide is accurate. </span>
+        </label>
+        <div class="terms-error" id="termsError">⚠ You must accept the terms to proceed.</div>
       </div>
     </div>
-
-    <div class="no-dep-note visible" id="noDepNote">
-      No dependents will be submitted with this form. Clearing out any currently listed dependents.
-    </div>
-
-    <div id="depSections">
-
-      <!-- Spouse block -->
-      <div class="dep-block spouse-block" id="spouseBlock">
-        <div class="dep-block-header">
-          <span class="dep-tag tag-spouse">Spouse</span>
-          <span class="dep-limit">Max 1 entry</span>
-          <button class="dep-block-remove" type="button" onclick="removeSection('spouse')">✕ Remove</button>
-        </div>
-        <div class="dep-block-body">
-          <div class="field-group">
-            <div class="field">
-              <label>First Name</label>
-              <input type="text" id="spouseFirst" placeholder="Jane" autocomplete="off"/>
-            </div>
-            <div class="field">
-              <label>Last Name</label>
-              <input type="text" id="spouseLast" placeholder="Doe" autocomplete="off"/>
-            </div>
+    <!-- Step 2: Dependents -->
+    <div class="card locked" id="dependentsCard">
+      <div class="card-header">
+        <div class="icon" style="background:#f0f0ee;color:#555;">👥</div>
+        <h2>Dependents</h2>
+        <span class="badge">Step 2</span>
+      </div>
+      <!-- Lock notice shown when terms not yet accepted -->
+      <div class="lock-notice visible" id="lockNotice">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0">
+          <rect x="3" y="11" width="18" height="11" rx="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg> Please read and accept the Terms &amp; Conditions above to continue.
+      </div>
+      <div class="card-body">
+        <div class="question-row">
+          <span class="q-text">Do you have any dependents to add?</span>
+          <div class="toggle-group">
+            <button class="toggle-btn" id="btnYes" type="button" onclick="setHasDeps(true)">Yes</button>
+            <button class="toggle-btn active" id="btnNo" type="button" onclick="setHasDeps(false)">No</button>
           </div>
         </div>
-      </div>
-
-      <!-- Children block -->
-      <div class="dep-block child-block" id="childBlock">
-        <div class="dep-block-header">
-          <span class="dep-tag tag-child">Children</span>
-          <span class="dep-limit">Multiple entries allowed</span>
-          <button class="dep-block-remove" type="button" onclick="removeSection('child')">✕ Remove All</button>
-        </div>
-        <div class="dep-block-body">
-          <div id="childrenList"></div>
-          <button class="add-child-btn" type="button" onclick="addChild()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Another Child
-          </button>
-        </div>
-      </div>
-
-      <!-- Other block -->
-      <div class="dep-block other-block" id="otherBlock">
-        <div class="dep-block-header">
-          <span class="dep-tag tag-other">Other</span>
-          <span class="dep-limit">Max 1 entry</span>
-          <button class="dep-block-remove" type="button" onclick="removeSection('other')">✕ Remove</button>
-        </div>
-        <div class="dep-block-body">
-          <div class="field-group" style="margin-bottom:12px;">
-            <div class="field" style="grid-column: 1 / -1;">
-              <label>Relationship <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px;">(e.g. Domestic Partner. Subject to review)</span></label>
-              <input type="text" id="otherRelationship" placeholder="Describe the relationship" autocomplete="off"/>
+        <div class="no-dep-note visible" id="noDepNote"> No dependents will be submitted with this form. Clearing out any currently listed dependents. </div>
+        <div id="depSections">
+          <!-- Spouse block -->
+          <div class="dep-block spouse-block" id="spouseBlock">
+            <div class="dep-block-header">
+              <span class="dep-tag tag-spouse">Spouse</span>
+              <span class="dep-limit">Max 1 entry</span>
+              <button class="dep-block-remove" type="button" onclick="removeSection('spouse')">✕ Remove</button>
+            </div>
+            <div class="dep-block-body">
+              <div class="field-group">
+                <div class="field">
+                  <label>First Name</label>
+                  <input type="text" id="spouseFirst" placeholder="Jane" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label>Last Name</label>
+                  <input type="text" id="spouseLast" placeholder="Doe" autocomplete="off" />
+                </div>
+              </div>
             </div>
           </div>
-          <div class="field-group three-col">
-            <div class="field">
-              <label>Birth Date</label>
-              <input type="date" id="otherDob"/>
+          <!-- Children block -->
+          <div class="dep-block child-block" id="childBlock">
+            <div class="dep-block-header">
+              <span class="dep-tag tag-child">Children</span>
+              <span class="dep-limit">Multiple entries allowed</span>
+              <button class="dep-block-remove" type="button" onclick="removeSection('child')">✕ Remove All</button>
             </div>
-            <div class="field">
-              <label>First Name</label>
-              <input type="text" id="otherFirst" placeholder="Alex" autocomplete="off"/>
-            </div>
-            <div class="field">
-              <label>Last Name</label>
-              <input type="text" id="otherLast" placeholder="Doe" autocomplete="off"/>
+            <div class="dep-block-body">
+              <div id="childrenList"></div>
+              <button class="add-child-btn" type="button" onclick="addChild()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg> Add Another Child </button>
             </div>
           </div>
+          <!-- Other block -->
+          <div class="dep-block other-block" id="otherBlock">
+            <div class="dep-block-header">
+              <span class="dep-tag tag-other">Other</span>
+              <span class="dep-limit">Max 1 entry</span>
+              <button class="dep-block-remove" type="button" onclick="removeSection('other')">✕ Remove</button>
+            </div>
+            <div class="dep-block-body">
+              <div class="field-group" style="margin-bottom:12px;">
+                <div class="field" style="grid-column: 1 / -1;">
+                  <label>Relationship <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px;">(e.g. Domestic Partner. Subject to review)</span>
+                  </label>
+                  <input type="text" id="otherRelationship" placeholder="Describe the relationship" autocomplete="off" />
+                </div>
+              </div>
+              <div class="field-group three-col">
+                <div class="field">
+                  <label>Birth Date</label>
+                  <input type="date" id="otherDob" />
+                </div>
+                <div class="field">
+                  <label>First Name</label>
+                  <input type="text" id="otherFirst" placeholder="Alex" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label>Last Name</label>
+                  <input type="text" id="otherLast" placeholder="Doe" autocomplete="off" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Add buttons -->
+          <div class="add-type-row" id="addTypeRow">
+            <button class="add-type-btn" id="addSpouseBtn" type="button" onclick="addSection('spouse')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg> Add Spouse </button>
+            <button class="add-type-btn" id="addChildBtn" type="button" onclick="addSection('child')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg> Add Child </button>
+            <button class="add-type-btn" id="addOtherBtn" type="button" onclick="addSection('other')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg> Add Other </button>
+          </div>
         </div>
+        <!-- /depSections -->
       </div>
+    </div>
+    <!-- Submit -->
+    <div class="submit-wrap">
+      <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()">Submit Registration</button>
+    </div>
+    <div class="result-msg" id="resultMsg"></div>
+    <script>
+      const ENDPOINT = "https://default.environment.api.powerplatform.com&sv=0&sig=null";
+      let hasDeps = false;
+      let childCount = 0;
+      const active = {
+        spouse: false,
+        child: false,
+        other: false
+      };
+      // ── Terms checkbox gate ── //
+      function onTermsChange() {
+        const accepted = document.getElementById("termsCheck").checked;
+        const card = document.getElementById("dependentsCard");
+        const notice = document.getElementById("lockNotice");
+        card.classList.toggle("locked", !accepted);
+        notice.classList.toggle("visible", !accepted);
+        // Clear the terms error if they just checked it
+        if (accepted) {
+          document.getElementById("termsError").classList.remove("visible");
+        }
+      }
+      // ── Yes / No ── //
+      function setHasDeps(val) {
+        hasDeps = val;
+        document.getElementById("btnYes").classList.toggle("active", val);
+        document.getElementById("btnNo").classList.toggle("active", !val);
+        document.getElementById("depSections").classList.toggle("visible", val);
+        document.getElementById("noDepNote").classList.toggle("visible", !val);
+      }
+      // ── Show a section when employee clicks Add ── //
+      function addSection(key) {
+        active[key] = true;
+        document.getElementById(key + "Block").classList.add("visible");
+        document.getElementById("add" + cap(key) + "Btn").classList.add("hidden");
+        if (key === "child" && document.getElementById("childrenList").children.length === 0) {
+          addChild();
+        }
+      }
+      // ── Remove / reset a section ── //
+      function removeSection(key) {
+        active[key] = false;
+        document.getElementById(key + "Block").classList.remove("visible");
+        document.getElementById("add" + cap(key) + "Btn").classList.remove("hidden");
+        if (key === "spouse") {
+          document.getElementById("spouseFirst").value = "";
+          document.getElementById("spouseLast").value = "";
+          ["spouseFirst", "spouseLast"].forEach(id => document.getElementById(id).classList.remove("invalid"));
+        }
+        if (key === "child") {
+          document.getElementById("childrenList").innerHTML = "";
+          childCount = 0;
+        }
+        if (key === "other") {
+          document.getElementById("otherRelationship").value = "";
+          document.getElementById("otherDob").value = "";
+          document.getElementById("otherFirst").value = "";
+          document.getElementById("otherLast").value = "";
+          ["otherRelationship", "otherDob", "otherFirst", "otherLast"].forEach(id => document.getElementById(id).classList.remove("invalid"));
+        }
+      }
+      // ── Children ── //
+      function addChild() {
+        childCount++;
+        const list = document.getElementById("childrenList");
+        const num = list.children.length + 1;
+        const div = document.createElement("div");
+        div.className = "child-entry";
+        div.innerHTML = `
+      
+			<div class="child-entry-header">
+				<span class="child-entry-label">Child ${num}</span>
+				<button class="remove-child-btn" type="button" onclick="removeChildEntry(this)">✕ Remove</button>
+			</div>
+			<div class="field-group three-col">
+				<div class="field">
+					<label>Birth Date</label>
+					<input type="date" name="childDob"/>
+				</div>
+				<div class="field">
+					<label>First Name</label>
+					<input type="text" name="childFirst" placeholder="Sam" autocomplete="off"/>
+				</div>
+				<div class="field">
+					<label>Last Name</label>
+					<input type="text" name="childLast" placeholder="Doe" autocomplete="off"/>
+				</div>
+			</div>`;
+        list.appendChild(div);
+        renumberChildren();
+      }
 
-      <!-- Add buttons -->
-      <div class="add-type-row" id="addTypeRow">
-        <button class="add-type-btn" id="addSpouseBtn" type="button" onclick="addSection('spouse')">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Add Spouse
-        </button>
-        <button class="add-type-btn" id="addChildBtn" type="button" onclick="addSection('child')">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Add Child
-        </button>
-        <button class="add-type-btn" id="addOtherBtn" type="button" onclick="addSection('other')">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Add Other
-        </button>
-      </div>
+      function removeChildEntry(btn) {
+        btn.closest(".child-entry").remove();
+        renumberChildren();
+        if (document.getElementById("childrenList").children.length === 0) {
+          removeSection("child");
+        }
+      }
 
-    </div><!-- /depSections -->
-  </div>
-</div>
-
-<!-- Submit -->
-<div class="submit-wrap">
-  <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()">Submit Registration</button>
-</div>
-<div class="result-msg" id="resultMsg"></div>
-
-<script>
-  const ENDPOINT = "https://default.environment.api.powerplatform.com&sv=0&sig=null";
-
-  let hasDeps = false;
-  let childCount = 0;
-  const active = { spouse: false, child: false, other: false };
-
-  // ── Terms checkbox gate ── //
-  function onTermsChange() {
-    const accepted = document.getElementById("termsCheck").checked;
-    const card     = document.getElementById("dependentsCard");
-    const notice   = document.getElementById("lockNotice");
-
-    card.classList.toggle("locked", !accepted);
-    notice.classList.toggle("visible", !accepted);
-
-    // Clear the terms error if they just checked it
-    if (accepted) {
-      document.getElementById("termsError").classList.remove("visible");
-    }
-  }
-
-  // ── Yes / No ── //
-  function setHasDeps(val) {
-    hasDeps = val;
-    document.getElementById("btnYes").classList.toggle("active",  val);
-    document.getElementById("btnNo").classList.toggle("active",  !val);
-    document.getElementById("depSections").classList.toggle("visible", val);
-    document.getElementById("noDepNote").classList.toggle("visible", !val);
-  }
-
-  // ── Show a section when employee clicks Add ── //
-  function addSection(key) {
-    active[key] = true;
-    document.getElementById(key + "Block").classList.add("visible");
-    document.getElementById("add" + cap(key) + "Btn").classList.add("hidden");
-    if (key === "child" && document.getElementById("childrenList").children.length === 0) {
-      addChild();
-    }
-  }
-
-  // ── Remove / reset a section ── //
-  function removeSection(key) {
-    active[key] = false;
-    document.getElementById(key + "Block").classList.remove("visible");
-    document.getElementById("add" + cap(key) + "Btn").classList.remove("hidden");
-    if (key === "spouse") {
-      document.getElementById("spouseFirst").value = "";
-      document.getElementById("spouseLast").value  = "";
-      ["spouseFirst","spouseLast"].forEach(id => document.getElementById(id).classList.remove("invalid"));
-    }
-    if (key === "child") {
-      document.getElementById("childrenList").innerHTML = "";
-      childCount = 0;
-    }
-    if (key === "other") {
-      document.getElementById("otherRelationship").value = "";
-      document.getElementById("otherDob").value   = "";
-      document.getElementById("otherFirst").value = "";
-      document.getElementById("otherLast").value  = "";
-      ["otherRelationship","otherDob","otherFirst","otherLast"].forEach(id => document.getElementById(id).classList.remove("invalid"));
-    }
-  }
-
-  // ── Children ── //
-  function addChild() {
-    childCount++;
-    const list = document.getElementById("childrenList");
-    const num  = list.children.length + 1;
-    const div  = document.createElement("div");
-    div.className = "child-entry";
-    div.innerHTML = `
-      <div class="child-entry-header">
-        <span class="child-entry-label">Child ${num}</span>
-        <button class="remove-child-btn" type="button" onclick="removeChildEntry(this)">✕ Remove</button>
-      </div>
-      <div class="field-group three-col">
-        <div class="field">
-          <label>Birth Date</label>
-          <input type="date" name="childDob"/>
-        </div>
-        <div class="field">
-          <label>First Name</label>
-          <input type="text" name="childFirst" placeholder="Sam" autocomplete="off"/>
-        </div>
-        <div class="field">
-          <label>Last Name</label>
-          <input type="text" name="childLast" placeholder="Doe" autocomplete="off"/>
-        </div>
-      </div>`;
-    list.appendChild(div);
-    renumberChildren();
-  }
-
-  function removeChildEntry(btn) {
-    btn.closest(".child-entry").remove();
-    renumberChildren();
-    if (document.getElementById("childrenList").children.length === 0) {
-      removeSection("child");
-    }
-  }
-
-  function renumberChildren() {
-    document.querySelectorAll(".child-entry").forEach((e, i) => {
-      const lbl = e.querySelector(".child-entry-label");
-      if (lbl) lbl.textContent = "Child " + (i + 1);
-    });
-  }
-
-  // ── Helpers ── //
-  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
-
-  // ── Build payload ── //
-  function buildPayload() {
-    const dependants = [];
-    if (hasDeps) {
-      if (active.spouse) {
-        dependants.push({
-          type:      "spouse",
-          firstName: document.getElementById("spouseFirst").value.trim(),
-          lastName:  document.getElementById("spouseLast").value.trim()
+      function renumberChildren() {
+        document.querySelectorAll(".child-entry").forEach((e, i) => {
+          const lbl = e.querySelector(".child-entry-label");
+          if (lbl) lbl.textContent = "Child " + (i + 1);
         });
       }
-      if (active.child) {
-        document.querySelectorAll(".child-entry").forEach(entry => {
-          dependants.push({
-            type:      "child",
-            birthDate: entry.querySelector("[name='childDob']").value,
-            firstName: entry.querySelector("[name='childFirst']").value.trim(),
-            lastName:  entry.querySelector("[name='childLast']").value.trim()
+      // ── Helpers ── //
+      function cap(s) {
+        return s.charAt(0).toUpperCase() + s.slice(1);
+      }
+      // ── Build payload ── //
+      function buildPayload() {
+        const dependants = [];
+        if (hasDeps) {
+          if (active.spouse) {
+            dependants.push({
+              type: "spouse",
+              firstName: document.getElementById("spouseFirst").value.trim(),
+              lastName: document.getElementById("spouseLast").value.trim()
+            });
+          }
+          if (active.child) {
+            document.querySelectorAll(".child-entry").forEach(entry => {
+              dependants.push({
+                type: "child",
+                birthDate: entry.querySelector("[name='childDob']").value,
+                firstName: entry.querySelector("[name='childFirst']").value.trim(),
+                lastName: entry.querySelector("[name='childLast']").value.trim()
+              });
+            });
+          }
+          if (active.other) {
+            const rel = document.getElementById("otherRelationship").value.trim();
+            dependants.push({
+              type: rel || "other",
+              birthDate: document.getElementById("otherDob").value,
+              firstName: document.getElementById("otherFirst").value.trim(),
+              lastName: document.getElementById("otherLast").value.trim()
+            });
+          }
+        }
+        return {
+          dependants
+        };
+      }
+      // ── Validation ── //
+      function validate() {
+        let ok = true;
+        const termsOk = document.getElementById("termsCheck").checked;
+        document.getElementById("termsError").classList.toggle("visible", !termsOk);
+        if (!termsOk) ok = false;
+        if (!hasDeps) return ok;
+        if (active.spouse) {
+          const f = document.getElementById("spouseFirst");
+          const l = document.getElementById("spouseLast");
+          if (!f.value.trim()) {
+            f.classList.add("invalid");
+            ok = false;
+          } else f.classList.remove("invalid");
+          if (!l.value.trim()) {
+            l.classList.add("invalid");
+            ok = false;
+          } else l.classList.remove("invalid");
+        }
+        if (active.child) {
+          document.querySelectorAll(".child-entry").forEach(entry => {
+            const dob = entry.querySelector("[name='childDob']");
+            const first = entry.querySelector("[name='childFirst']");
+            const last = entry.querySelector("[name='childLast']");
+            if (!dob.value) {
+              dob.classList.add("invalid");
+              ok = false;
+            } else dob.classList.remove("invalid");
+            if (!first.value.trim()) {
+              first.classList.add("invalid");
+              ok = false;
+            } else first.classList.remove("invalid");
+            if (!last.value.trim()) {
+              last.classList.add("invalid");
+              ok = false;
+            } else last.classList.remove("invalid");
           });
-        });
+        }
+        if (active.other) {
+          const rel = document.getElementById("otherRelationship");
+          const dob = document.getElementById("otherDob");
+          const first = document.getElementById("otherFirst");
+          const last = document.getElementById("otherLast");
+          if (!rel.value.trim()) {
+            rel.classList.add("invalid");
+            ok = false;
+          } else rel.classList.remove("invalid");
+          if (!dob.value) {
+            dob.classList.add("invalid");
+            ok = false;
+          } else dob.classList.remove("invalid");
+          if (!first.value.trim()) {
+            first.classList.add("invalid");
+            ok = false;
+          } else first.classList.remove("invalid");
+          if (!last.value.trim()) {
+            last.classList.add("invalid");
+            ok = false;
+          } else last.classList.remove("invalid");
+        }
+        return ok;
       }
-      if (active.other) {
-        const rel = document.getElementById("otherRelationship").value.trim();
-        dependants.push({
-          type:      rel || "other",
-          birthDate: document.getElementById("otherDob").value,
-          firstName: document.getElementById("otherFirst").value.trim(),
-          lastName:  document.getElementById("otherLast").value.trim()
-        });
+      // ── Submit ── //
+      async function handleSubmit() {
+        if (!validate()) return;
+        const payload = buildPayload();
+        const btn = document.getElementById("submitBtn");
+        const msg = document.getElementById("resultMsg");
+        btn.disabled = true;
+        btn.innerHTML = ' < span class = "spinner" > < /span>Submitting…';
+        msg.className = "result-msg";
+        try {
+          const res = await fetch(ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+          if (res.ok) {
+            msg.className = "result-msg success visible";
+            msg.innerHTML = "✓  < strong > Registration submitted successfully. < /strong> Your dependents have been received and will be reviewed within 3–5 business days.";
+            btn.innerHTML = "✓ Submitted";
+          } else {
+            throw new Error("Server responded with status " + res.status);
+          }
+        } catch (err) {
+          msg.className = "result-msg error visible";
+          msg.innerHTML = "⚠  < strong > Submission failed. < /strong> " + err.message + ". Please try again or contact HR.";
+          btn.disabled = false;
+          btn.innerHTML = "Submit Registration";
+        }
       }
-    }
-    return { dependants };
-  }
-
-  // ── Validation ── //
-  function validate() {
-    let ok = true;
-
-    const termsOk = document.getElementById("termsCheck").checked;
-    document.getElementById("termsError").classList.toggle("visible", !termsOk);
-    if (!termsOk) ok = false;
-
-    if (!hasDeps) return ok;
-
-    if (active.spouse) {
-      const f = document.getElementById("spouseFirst");
-      const l = document.getElementById("spouseLast");
-      if (!f.value.trim()) { f.classList.add("invalid"); ok = false; } else f.classList.remove("invalid");
-      if (!l.value.trim()) { l.classList.add("invalid"); ok = false; } else l.classList.remove("invalid");
-    }
-
-    if (active.child) {
-      document.querySelectorAll(".child-entry").forEach(entry => {
-        const dob   = entry.querySelector("[name='childDob']");
-        const first = entry.querySelector("[name='childFirst']");
-        const last  = entry.querySelector("[name='childLast']");
-        if (!dob.value)          { dob.classList.add("invalid");   ok = false; } else dob.classList.remove("invalid");
-        if (!first.value.trim()) { first.classList.add("invalid"); ok = false; } else first.classList.remove("invalid");
-        if (!last.value.trim())  { last.classList.add("invalid");  ok = false; } else last.classList.remove("invalid");
-      });
-    }
-
-    if (active.other) {
-      const rel   = document.getElementById("otherRelationship");
-      const dob   = document.getElementById("otherDob");
-      const first = document.getElementById("otherFirst");
-      const last  = document.getElementById("otherLast");
-      if (!rel.value.trim())   { rel.classList.add("invalid");   ok = false; } else rel.classList.remove("invalid");
-      if (!dob.value)          { dob.classList.add("invalid");   ok = false; } else dob.classList.remove("invalid");
-      if (!first.value.trim()) { first.classList.add("invalid"); ok = false; } else first.classList.remove("invalid");
-      if (!last.value.trim())  { last.classList.add("invalid");  ok = false; } else last.classList.remove("invalid");
-    }
-
-    return ok;
-  }
-
-  // ── Submit ── //
-  async function handleSubmit() {
-    if (!validate()) return;
-
-    const payload = buildPayload();
-    const btn = document.getElementById("submitBtn");
-    const msg = document.getElementById("resultMsg");
-
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span>Submitting…';
-    msg.className = "result-msg";
-
-    try {
-      const res = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      if (res.ok) {
-        msg.className = "result-msg success visible";
-        msg.innerHTML = "✓ <strong>Registration submitted successfully.</strong> Your dependents have been received and will be reviewed within 3–5 business days.";
-        btn.innerHTML = "✓ Submitted";
-      } else {
-        throw new Error("Server responded with status " + res.status);
-      }
-    } catch (err) {
-      msg.className = "result-msg error visible";
-      msg.innerHTML = "⚠ <strong>Submission failed.</strong> " + err.message + ". Please try again or contact HR.";
-      btn.disabled = false;
-      btn.innerHTML = "Submit Registration";
-    }
-  }
-</script>
-</body>
+    </script>
+  </body>
 </html>
