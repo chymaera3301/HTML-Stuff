@@ -25,7 +25,7 @@
       --contact-light: #e8f5ee;
       --radius: 6px;
       --radius-lg: 12px;
-      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(181, 149, 149, 0.04);
       --shadow-lg: 0 2px 8px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.06);
     }
 
@@ -354,9 +354,8 @@
     <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()" disabled>Submit Update</button>
   </div>
   <div class="result-msg" id="resultMsg"></div>
-
     <script>
-      const ENDPOINT = "https://default.environment.api.powerplatform.com&sv=0&sig=null";
+      const ENDPOINT = "YOUR_POWER_AUTOMATE_ENDPOINT_HERE";
 
       const ALL_FUNCTIONS = [
         "President / CEO / Owner",
@@ -496,39 +495,48 @@
 
       // ── Build/refresh one panel's option list ── //
       function buildFunctionPanel(panel) {
-        const entry     = panel.closest(".contact-entry");
-        const myFuncs   = getContactFunctions(entry);
-        // Options = globally unassigned OR already on this contact (so they can be re-selected if removed)
-        const available = ALL_FUNCTIONS
-          .filter(f => (assignedFunctions[f] === null || assignedFunctions[f] === entry) && !myFuncs.includes(f))
-          .sort((a, b) => a.localeCompare(b));
+        const entry    = panel.closest(".contact-entry");
+        const myFuncs  = getContactFunctions(entry);
+        const available = ALL_FUNCTIONS.filter(f =>
+          (assignedFunctions[f] === null || assignedFunctions[f] === entry) && !myFuncs.includes(f)
+        );
+
+        const requiredAvail = available.filter(f =>  REQUIRED_FUNCTIONS.has(f)).sort((a,b) => a.localeCompare(b));
+        const optionalAvail = available.filter(f => !REQUIRED_FUNCTIONS.has(f)).sort((a,b) => a.localeCompare(b));
 
         panel.innerHTML = "";
         if (available.length === 0) {
           panel.innerHTML = `<div class="function-empty-msg">No more functions available to assign.</div>`;
           return;
         }
-        available.forEach(f => {
+
+        const renderOption = f => {
           const opt   = document.createElement("div");
           opt.className = "function-option";
-          const isReq = REQUIRED_FUNCTIONS.has(f);
-          opt.innerHTML = `<span>${f}</span>${isReq ? '<span class="req-badge">Required</span>' : ''}`;
-          opt.onclick   = () => selectFunction(entry, f);
+          opt.innerHTML = `<span>${f}</span><span class="req-badge">Required</span>`;
+          if (!REQUIRED_FUNCTIONS.has(f)) opt.querySelector(".req-badge").remove();
+          opt.onclick = (e) => { e.stopPropagation(); selectFunction(entry, f); };
           panel.appendChild(opt);
-        });
+        };
+
+        requiredAvail.forEach(renderOption);
+
+        if (requiredAvail.length > 0 && optionalAvail.length > 0) {
+          const divider = document.createElement("div");
+          divider.style.cssText = "border-top:1px solid var(--border);margin:4px 0;";
+          panel.appendChild(divider);
+        }
+
+        optionalAvail.forEach(renderOption);
       }
 
       // ── Select a function from the panel ── //
       function selectFunction(entry, funcName) {
         assignedFunctions[funcName] = entry;
         addFunctionTag(entry, funcName);
-
-        // Close the panel
-        const box   = entry.querySelector(".function-box");
-        const panel = box.querySelector(".function-panel");
-        panel.classList.remove("open");
-        box.classList.remove("open");
-
+        // Rebuild panel in place so user can keep selecting without reopening
+        const panel = entry.querySelector(".function-panel");
+        buildFunctionPanel(panel);
         renderRequiredTracker();
         updateSubmitState();
       }
@@ -649,7 +657,26 @@
         const hint       = document.getElementById("primaryHint");
         const hasPrimary = !!primaryEntry;
         const allReqDone = Array.from(REQUIRED_FUNCTIONS).every(f => assignedFunctions[f] !== null);
-        btn.disabled = !(hasPrimary && allReqDone);
+
+        // Vendor name filled
+        const vendorOk = !!document.getElementById("vendorName").value.trim();
+
+        // Every contact: name filled + at least one valid contact method
+        let contactsOk = true;
+        document.querySelectorAll(".contact-entry").forEach(entry => {
+          const name  = entry.querySelector("[name='contactName']").value.trim();
+          const email = entry.querySelector("[name='contactEmail']").value.trim();
+          const mob   = entry.querySelector("[name='contactMobile']").value.trim();
+          const work  = entry.querySelector("[name='contactWork']").value.trim();
+          const digits = v => v.replace(/\D/g, "").length;
+          const mobOk   = mob   === "" || digits(mob)  === 10;
+          const workOk  = work  === "" || digits(work) === 10;
+          const emailOk = email === "" || email.includes("@");
+          const hasContact = (mob && mobOk) || (work && workOk) || (email && emailOk);
+          if (!name || !hasContact || !mobOk || !workOk) contactsOk = false;
+        });
+
+        btn.disabled = !(hasPrimary && allReqDone && vendorOk && contactsOk);
         hint.classList.toggle("visible", !hasPrimary);
       }
 
@@ -709,7 +736,7 @@
         });
       }
 
-      // ── Phone formatting ── //
+      // ── Phone formatting + live submit state ── //
       document.addEventListener("input", function(e) {
         if (e.target.name === "contactMobile" || e.target.name === "contactWork") {
           let v = e.target.value.replace(/\D/g, "").substring(0, 10);
@@ -717,7 +744,11 @@
           else if (v.length >= 4) v = "(" + v.substring(0,3) + ") " + v.substring(3);
           else if (v.length > 0)  v = "(" + v;
           e.target.value = v;
+          // Red outline if partially filled (1–9 digits), clear if empty or complete
+          const digits = e.target.value.replace(/\D/g, "").length;
+          e.target.classList.toggle("invalid", digits > 0 && digits < 10);
         }
+        updateSubmitState();
       });
 
       // ── Build submission payload ── //
@@ -744,39 +775,25 @@
 
       // ── Validation ── //
       function validate() {
-        let ok = true;
-
-        const vendorName = document.getElementById("vendorName");
-        if (!vendorName.value.trim()) { vendorName.classList.add("invalid"); ok = false; }
-        else vendorName.classList.remove("invalid");
-
-        if (!primaryEntry) ok = false;
-        if (!Array.from(REQUIRED_FUNCTIONS).every(f => assignedFunctions[f] !== null)) ok = false;
-
+        // Button disabled state already enforces all requirements —
+        // this is just a final safety check before fetch.
+        const vendorOk   = !!document.getElementById("vendorName").value.trim();
+        const hasPrimary = !!primaryEntry;
+        const allReqDone = Array.from(REQUIRED_FUNCTIONS).every(f => assignedFunctions[f] !== null);
+        let contactsOk   = true;
         document.querySelectorAll(".contact-entry").forEach(entry => {
-          const name  = entry.querySelector("[name='contactName']");
-          const email = entry.querySelector("[name='contactEmail']");
-          const mob   = entry.querySelector("[name='contactMobile']");
-          const work  = entry.querySelector("[name='contactWork']");
-
-          // Full Name is required
-          if (!name.value.trim()) { name.classList.add("invalid"); ok = false; }
-          else name.classList.remove("invalid");
-
-          // At least one of: email, mobile, or work phone
-          const hasContact = email.value.trim() || mob.value.trim() || work.value.trim();
-          if (!hasContact) {
-            email.classList.add("invalid"); mob.classList.add("invalid"); work.classList.add("invalid"); ok = false;
-          } else {
-            // Only highlight individual fields invalid if they have content but are malformed
-            if (email.value.trim() && !email.value.includes("@")) { email.classList.add("invalid"); ok = false; }
-            else email.classList.remove("invalid");
-            mob.classList.remove("invalid");
-            work.classList.remove("invalid");
-          }
+          const name  = entry.querySelector("[name='contactName']").value.trim();
+          const email = entry.querySelector("[name='contactEmail']").value.trim();
+          const mob   = entry.querySelector("[name='contactMobile']").value.trim();
+          const work  = entry.querySelector("[name='contactWork']").value.trim();
+          const digits = v => v.replace(/\D/g, "").length;
+          const mobOk   = mob   === "" || digits(mob)  === 10;
+          const workOk  = work  === "" || digits(work) === 10;
+          const emailOk = email === "" || email.includes("@");
+          const hasContact = (mob && mobOk) || (work && workOk) || (email && emailOk);
+          if (!name || !hasContact || !mobOk || !workOk) contactsOk = false;
         });
-
-        return ok;
+        return vendorOk && hasPrimary && allReqDone && contactsOk;
       }
 
       // ── Submit ── //
