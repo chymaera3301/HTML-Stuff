@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vendor Contact Update</title>
@@ -25,7 +25,7 @@
       --contact-light: #e8f5ee;
       --radius: 6px;
       --radius-lg: 12px;
-      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(181, 149, 149, 0.04);
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
       --shadow-lg: 0 2px 8px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.06);
     }
 
@@ -293,13 +293,13 @@
       .contact-entry { padding: 12px; }
     }
   </style>
-  </head>
+</head>
   <body>
 
   <div class="page-header">
     <div class="org-label">Vendor Management</div>
     <h1>Vendor Contact Update</h1>
-    <p>Use this form to update your company's contact information on file. You may add multiple contacts.</p>
+    <p>Use this form to update your company's contact information on file.</p>
   </div>
 
   <!-- Step 1: Vendor Information -->
@@ -334,6 +334,10 @@
     </div>
     <div class="card-body">
       <div id="contactsList"></div>
+      <button class="add-contact-btn" type="button" onclick="addContact()" style="margin-top:16px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Contact
+      </button>
       <div class="primary-required-hint" id="primaryHint">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         A Primary contact is required before submitting.
@@ -342,10 +346,6 @@
         <div class="required-tracker-title">Required Functions — assign each to a contact</div>
         <div class="required-tracker-tags"></div>
       </div>
-      <button class="add-contact-btn" type="button" onclick="addContact()" style="margin-top:16px;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add Contact
-      </button>
     </div>
   </div>
 
@@ -401,6 +401,7 @@
       window.addEventListener("DOMContentLoaded", () => {
         addContact();
         renderRequiredTracker();
+        updateSubmitState();
       });
 
       // ── Close panels on outside click ── //
@@ -584,19 +585,21 @@
         const tagsDiv   = container.querySelector(".required-tracker-tags");
         const titleEl   = container.querySelector(".required-tracker-title");
         tagsDiv.innerHTML = "";
-        let allDone = true;
-        Array.from(REQUIRED_FUNCTIONS).sort((a, b) => a.localeCompare(b)).forEach(f => {
-          const done = assignedFunctions[f] !== null;
-          if (!done) allDone = false;
+        const missing = Array.from(REQUIRED_FUNCTIONS)
+          .filter(f => assignedFunctions[f] === null)
+          .sort((a, b) => a.localeCompare(b));
+        if (missing.length === 0) {
+          container.style.display = "none";
+          return;
+        }
+        container.style.display = "";
+        titleEl.textContent = "Required Functions — assign each to a contact";
+        missing.forEach(f => {
           const tag = document.createElement("span");
-          tag.className = "req-tracker-tag " + (done ? "done" : "missing");
-          tag.textContent = (done ? "✓ " : "○ ") + f;
+          tag.className = "req-tracker-tag missing";
+          tag.textContent = "○ " + f;
           tagsDiv.appendChild(tag);
         });
-        container.classList.toggle("all-done", allDone);
-        titleEl.textContent = allDone
-          ? "✓ All required functions have been assigned"
-          : "Required Functions — assign each to a contact";
       }
 
       // ── Role checkbox logic ── //
