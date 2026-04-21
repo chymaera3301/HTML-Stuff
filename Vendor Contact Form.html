@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vendor Contact Update</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vendor Contact Update</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <style>
       :root {
         --bg: #f5f3ef;
@@ -29,7 +29,7 @@
         --shadow-lg: 0 2px 8px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.06);
       }
 
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *, *::before, *::after {box-sizing: border-box; margin: 0; padding: 0;}
 
       body {
         font-family: 'DM Sans', sans-serif;
@@ -40,7 +40,7 @@
       }
 
       /* ── Page Header ── */
-      .page-header { max-width: 680px; margin: 0 auto 36px; }
+      .page-header {max-width: 680px; margin: 0 auto 36px;}
       .page-header .org-label {
         font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
         text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
@@ -49,7 +49,7 @@
         font-family: 'Libre Baskerville', serif; font-size: 28px;
         font-weight: 700; color: var(--accent); line-height: 1.25;
       }
-      .page-header p { margin-top: 10px; font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+      .page-header p {margin-top: 10px; font-size: 14px; color: var(--text-muted); line-height: 1.6;}
 
       /* ── Card ── */
       .card {
@@ -66,18 +66,18 @@
         display: flex; align-items: center; justify-content: center;
         font-size: 13px; flex-shrink: 0;
       }
-      .card-header h2 { font-family: 'Libre Baskerville', serif; font-size: 16px; font-weight: 700; color: var(--text); }
+      .card-header h2 {font-family: 'Libre Baskerville', serif; font-size: 16px; font-weight: 700; color: var(--text);}
       .card-header .badge {
         margin-left: auto; font-size: 11px; font-weight: 600;
         letter-spacing: 0.05em; padding: 3px 9px; border-radius: 20px;
         color: var(--text-muted); background: var(--surface-2);
       }
-      .card-body { padding: 24px 28px; }
+      .card-body {padding: 24px 28px;}
 
       /* ── Fields ── */
-      .field-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-      .field-group.three-col { grid-template-columns: 1fr 1fr 1fr; }
-      .field-group.four-col  { grid-template-columns: 1fr 1fr 1fr 1fr; }
+      .field-group {display: grid; grid-template-columns: 1fr 1fr; gap: 12px;}
+      .field-group.three-col {grid-template-columns: 1fr 1fr 1fr;}
+      .field-group.four-col {grid-template-columns: 1fr 1fr 1fr 1fr;}
 
       .field label {
         display: block; font-size: 11.5px; font-weight: 600;
@@ -94,17 +94,17 @@
       .field input:focus, .field select:focus {
         border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(44,74,110,0.1);
       }
-      .field input.invalid, .field select.invalid { border-color: var(--danger); }
+      .field input.invalid, .field select.invalid {border-color: var(--danger);}
 
       /* ── Vendor info section ── */
-      .vendor-icon { background: var(--accent-light); color: var(--accent); }
+      .vendor-icon {background: var(--accent-light); color: var(--accent);}
 
       /* ── Contact entries ── */
       .contact-entry {
         border: 1px solid #b8d4c0; border-radius: var(--radius);
         padding: 14px; margin-bottom: 12px; background: #f4faf6;
       }
-      .contact-entry:last-child { margin-bottom: 0; }
+      .contact-entry:last-child {margin-bottom: 0;}
       .contact-entry-header {
         display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
       }
@@ -117,9 +117,9 @@
         font-size: 13px; padding: 2px 6px; border-radius: 4px;
         transition: background 0.15s, color 0.15s; font-family: 'DM Sans', sans-serif; font-weight: 500;
       }
-      .remove-contact-btn:hover { background: var(--danger-light); color: var(--danger); }
+      .remove-contact-btn:hover {background: var(--danger-light); color: var(--danger);}
 
-      .phone-row { display: grid; grid-template-columns: 1fr 1fr 80px; gap: 12px; }
+      .phone-row {display: grid; grid-template-columns: 1fr 1fr 80px; gap: 12px;}
 
       .add-contact-btn {
         margin-top: 14px; display: flex; align-items: center; gap: 6px;
@@ -129,13 +129,13 @@
         font-size: 13px; font-weight: 600; cursor: pointer; width: 100%;
         justify-content: center; transition: background 0.15s;
       }
-      .add-contact-btn:hover { background: var(--contact-light); }
+      .add-contact-btn:hover {background: var(--contact-light);}
 
       /* ── Contacts card header accent ── */
-      .contacts-icon { background: var(--contact-light); color: var(--contact-accent); }
+      .contacts-icon {background: var(--contact-light); color: var(--contact-accent);}
 
       /* ── Submit ── */
-      .submit-wrap { max-width: 680px; margin: 24px auto 0; }
+      .submit-wrap {max-width: 680px; margin: 24px auto 0;}
       .submit-btn {
         width: 100%; padding: 14px; background: var(--accent); color: white;
         border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
@@ -143,18 +143,18 @@
         transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
         box-shadow: var(--shadow); letter-spacing: 0.02em;
       }
-      .submit-btn:hover { background: var(--accent-hover); box-shadow: var(--shadow-lg); }
-      .submit-btn:active { transform: scale(0.99); }
-      .submit-btn:disabled { background: #9aabba; cursor: not-allowed; box-shadow: none; transform: none; }
+      .submit-btn:hover {background: var(--accent-hover); box-shadow: var(--shadow-lg);}
+      .submit-btn:active {transform: scale(0.99);}
+      .submit-btn:disabled {background: #9aabba; cursor: not-allowed; box-shadow: none; transform: none;}
 
       .result-msg {
         display: none; max-width: 680px; margin: 20px auto 0;
         padding: 18px 22px; border-radius: var(--radius-lg);
         font-size: 14px; font-weight: 500; line-height: 1.5;
       }
-      .result-msg.success { background: var(--success-light); border: 1px solid #a8d5bd; color: var(--success); }
-      .result-msg.error   { background: var(--danger-light);  border: 1px solid #e8b4af; color: var(--danger); }
-      .result-msg.visible { display: block; }
+      .result-msg.success {background: var(--success-light); border: 1px solid #a8d5bd; color: var(--success);}
+      .result-msg.error {background: var(--danger-light); border: 1px solid #e8b4af; color: var(--danger);}
+      .result-msg.visible {display: block;}
 
       .spinner {
         display: inline-block; width: 14px; height: 14px;
@@ -162,15 +162,15 @@
         border-radius: 50%; animation: spin 0.7s linear infinite;
         vertical-align: middle; margin-right: 6px;
       }
-      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes spin {to {transform: rotate(360deg);}}
 
       /* ── Name + Role row ── */
       .name-role-row {
         display: flex; align-items: flex-end; gap: 10px; margin-bottom: 12px;
       }
-      .name-role-row .name-field { flex: 1; min-width: 0; }
+      .name-role-row .name-field {flex: 1; min-width: 0;}
 
-      .role-checks { display: flex; gap: 7px; flex-shrink: 0; padding-bottom: 1px; }
+      .role-checks {display: flex; gap: 7px; flex-shrink: 0; padding-bottom: 1px;}
 
       .role-pill {
         display: flex; align-items: center; gap: 5px; cursor: pointer;
@@ -179,13 +179,13 @@
         font-size: 12.5px; font-weight: 600; color: var(--text-muted);
         transition: all 0.15s; user-select: none; white-space: nowrap;
       }
-      .role-pill input[type="checkbox"] { display: none; }
+      .role-pill input[type="checkbox"] {display: none;}
 
-      .role-pill.primary-pill:not(.disabled):hover  { border-color: #b07d10; color: #7a5800; background: #fdf8ec; }
-      .role-pill.secondary-pill:not(.disabled):hover { border-color: #5a7a9a; color: var(--accent); background: var(--accent-light); }
+      .role-pill.primary-pill:not(.disabled):hover {border-color: #b07d10; color: #7a5800; background: #fdf8ec;}
+      .role-pill.secondary-pill:not(.disabled):hover {border-color: #5a7a9a; color: var(--accent); background: var(--accent-light);}
 
-      .role-pill.primary-pill.checked   { background: #fdf0d0; border-color: #c49a20; color: #7a5800; }
-      .role-pill.secondary-pill.checked { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+      .role-pill.primary-pill.checked {background: #fdf0d0; border-color: #c49a20; color: #7a5800;}
+      .role-pill.secondary-pill.checked {background: var(--accent-light); border-color: var(--accent); color: var(--accent);}
 
       .role-pill.disabled {
         opacity: 0.38; cursor: not-allowed; pointer-events: none;
@@ -196,7 +196,7 @@
         font-size: 12px; color: var(--danger); margin-top: 10px;
         display: none; align-items: center; gap: 5px;
       }
-      .primary-required-hint.visible { display: flex; }
+      .primary-required-hint.visible {display: flex;}
 
       /* ── Helper hint text ── */
       .field-hint {
@@ -204,18 +204,18 @@
       }
 
       /* ── Function dropdown ── */
-      .function-field { position: relative; margin-top: 12px; }
+      .function-field {position: relative; margin-top: 12px;}
 
       .function-box {
         border: 1.5px solid var(--border); border-radius: var(--radius);
         background: var(--surface); transition: border-color 0.15s, box-shadow 0.15s;
       }
-      .function-box.open { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(44,74,110,0.1); }
+      .function-box.open {border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(44,74,110,0.1);}
 
       .function-tags-row {
         display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 10px 0;
       }
-      .function-tags-row:empty { padding: 0; }
+      .function-tags-row:empty {padding: 0;}
 
       .function-tag {
         display: inline-flex; align-items: center; gap: 5px;
@@ -224,7 +224,7 @@
         padding: 3px 6px 3px 10px; font-size: 12px; font-weight: 600;
         line-height: 1.4;
       }
-      .function-tag.required-tag { background: #fdf0d0; border-color: #c49a20; color: #7a5800; }
+      .function-tag.required-tag {background: #fdf0d0; border-color: #c49a20; color: #7a5800;}
 
       .function-tag-remove {
         background: none; border: none; cursor: pointer; color: inherit;
@@ -232,7 +232,7 @@
         display: flex; align-items: center; justify-content: center;
         font-size: 15px; line-height: 1; opacity: 0.6; transition: opacity 0.1s, background 0.1s;
       }
-      .function-tag-remove:hover { opacity: 1; background: rgba(0,0,0,0.1); }
+      .function-tag-remove:hover {opacity: 1; background: rgba(0,0,0,0.1);}
 
       .function-trigger {
         width: 100%; display: flex; align-items: center; justify-content: space-between;
@@ -240,8 +240,8 @@
         font-family: 'DM Sans', sans-serif; font-size: 13.5px; color: var(--text-muted);
         text-align: left; gap: 8px;
       }
-      .function-trigger .chevron { flex-shrink: 0; transition: transform 0.15s; }
-      .function-box.open .function-trigger .chevron { transform: rotate(180deg); }
+      .function-trigger .chevron {flex-shrink: 0; transition: transform 0.15s;}
+      .function-box.open .function-trigger .chevron {transform: rotate(180deg);}
 
       .function-panel {
         display: none; position: absolute; left: 0; right: 0; z-index: 200;
@@ -249,14 +249,14 @@
         border-radius: var(--radius); box-shadow: var(--shadow-lg);
         max-height: 240px; overflow-y: auto; margin-top: 3px;
       }
-      .function-panel.open { display: block; }
+      .function-panel.open {display: block;}
 
       .function-option {
         padding: 9px 14px; font-size: 13.5px; cursor: pointer; color: var(--text);
         display: flex; align-items: center; justify-content: space-between; gap: 10px;
         transition: background 0.1s;
       }
-      .function-option:hover { background: var(--accent-light); }
+      .function-option:hover {background: var(--accent-light);}
       .function-option .req-badge {
         flex-shrink: 0; font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
         padding: 2px 7px; border-radius: 10px;
@@ -272,91 +272,90 @@
         border: 1px solid #e8d98a; border-radius: var(--radius); background: #fdf8ec;
         transition: border-color 0.2s, background 0.2s;
       }
-      .required-tracker.all-done { border-color: #a8d5bd; background: var(--success-light); }
+      .required-tracker.all-done {border-color: #a8d5bd; background: var(--success-light);}
       .required-tracker-title {
         font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
         color: #7a6010; margin-bottom: 10px;
       }
-      .required-tracker.all-done .required-tracker-title { color: var(--success); }
-      .required-tracker-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+      .required-tracker.all-done .required-tracker-title {color: var(--success);}
+      .required-tracker-tags {display: flex; flex-wrap: wrap; gap: 6px;}
       .req-tracker-tag {
         font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px;
       }
-      .req-tracker-tag.missing { background: var(--danger-light); border: 1px solid #e8b4af; color: var(--danger); }
-      .req-tracker-tag.done    { background: var(--success-light); border: 1px solid #a8d5bd; color: var(--success); }
+      .req-tracker-tag.missing {background: var(--danger-light); border: 1px solid #e8b4af; color: var(--danger);}
+      .req-tracker-tag.done {background: var(--success-light); border: 1px solid #a8d5bd; color: var(--success);}
 
       @media (max-width: 560px) {
         .field-group, .field-group.three-col, .field-group.four-col,
-        .phone-row { grid-template-columns: 1fr; }
-        .card-body { padding-inline: 16px; }
-        .card-header { padding-inline: 16px; }
-        .contact-entry { padding: 12px; }
+        .phone-row {grid-template-columns: 1fr;}
+        .card-body {padding-inline: 16px;}
+        .card-header {padding-inline: 16px;}
+        .contact-entry {padding: 12px;}
       }
     </style>
   </head>
+
   <body>
-
-  <div class="page-header">
-    <div class="org-label">Vendor Management</div>
-    <h1>Vendor Contact Update</h1>
-    <p>Use this form to update your company's contact information on file.</p>
-  </div>
-
-  <!-- Step 1: Vendor Information -->
-  <div class="card">
-    <div class="card-header">
-      <div class="icon vendor-icon">🏢</div>
-      <h2>Vendor Information</h2>
-      <span class="badge">Step 1</span>
+    <div class="page-header">
+      <div class="org-label">Vendor Management</div>
+      <h1>Vendor Contact Update</h1>
+      <p>Use this form to update your company's contact information on file.</p>
     </div>
-    <div class="card-body">
-      <div class="field-group" style="margin-bottom: 12px;">
-        <div class="field" style="grid-column: 1 / -1;">
-          <label>Company / Vendor Name</label>
-          <input type="text" id="vendorName" placeholder="Acme Supply Co." autocomplete="organization"/>
+
+    <!-- Step 1: Vendor Information -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon vendor-icon">🏢</div>
+        <h2>Vendor Information</h2>
+        <span class="badge">Step 1</span>
+      </div>
+      <div class="card-body">
+        <div class="field-group" style="margin-bottom: 12px;">
+          <div class="field" style="grid-column: 1 / -1;">
+            <label>Company / Vendor Name</label>
+            <input type="text" id="vendorName" placeholder="Acme Supply Co." autocomplete="organization"/>
+          </div>
+        </div>
+        <div class="field-group" style="margin-bottom:0;">
+          <div class="field">
+            <label>Vendor ID <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;">(if known)</span></label>
+            <input type="text" id="vendorId" placeholder="e.g. VEN00123" autocomplete="off"/>
+          </div>
         </div>
       </div>
-      <div class="field-group" style="margin-bottom:0;">
-        <div class="field">
-          <label>Vendor ID <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;">(if known)</span></label>
-          <input type="text" id="vendorId" placeholder="e.g. VEN00123" autocomplete="off"/>
+    </div>
+
+    <!-- Step 2: Contacts -->
+    <div class="card">
+      <div class="card-header">
+        <div class="icon contacts-icon">👤</div>
+        <h2>Contacts</h2>
+        <span class="badge">Step 2</span>
+      </div>
+      <div class="card-body">
+        <div id="contactsList"></div>
+        <button class="add-contact-btn" type="button" onclick="addContact()" style="margin-top:16px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Contact
+        </button>
+        <div class="primary-required-hint" id="primaryHint">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          A Primary contact is required before submitting.
+        </div>
+        <div class="required-tracker" id="requiredTracker">
+          <div class="required-tracker-title">Required Functions — assign each to a contact</div>
+          <div class="required-tracker-tags"></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Step 2: Contacts -->
-  <div class="card">
-    <div class="card-header">
-      <div class="icon contacts-icon">👤</div>
-      <h2>Contacts</h2>
-      <span class="badge">Step 2</span>
+    <!-- Submit -->
+    <div class="submit-wrap">
+      <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()" disabled>Submit Update</button>
     </div>
-    <div class="card-body">
-      <div id="contactsList"></div>
-      <button class="add-contact-btn" type="button" onclick="addContact()" style="margin-top:16px;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add Contact
-      </button>
-      <div class="primary-required-hint" id="primaryHint">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        A Primary contact is required before submitting.
-      </div>
-      <div class="required-tracker" id="requiredTracker">
-        <div class="required-tracker-title">Required Functions — assign each to a contact</div>
-        <div class="required-tracker-tags"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Submit -->
-  <div class="submit-wrap">
-    <button class="submit-btn" id="submitBtn" type="button" onclick="handleSubmit()" disabled>Submit Update</button>
-  </div>
-  <div class="result-msg" id="resultMsg"></div>
+    <div class="result-msg" id="resultMsg"></div>
     <script>
-      const ENDPOINT = "YOUR_POWER_AUTOMATE_ENDPOINT_HERE";
-
+      const ENDPOINT = "https://default.environment.api.powerplatform.com&sv=0&sig=null";
       const ALL_FUNCTIONS = [
         "President / CEO / Owner",
         "Vice President of Sales",
@@ -377,7 +376,6 @@
         "Defectives / Parts / Warranty / Repairs",
         "Overages, Shortages, and Damages"
       ];
-
       const REQUIRED_FUNCTIONS = new Set([
         "Account Executive / Sales Rep",
         "Independent Sales Rep",
@@ -502,7 +500,7 @@
           (assignedFunctions[f] === null || assignedFunctions[f] === entry) && !myFuncs.includes(f)
         );
 
-        const requiredAvail = available.filter(f =>  REQUIRED_FUNCTIONS.has(f)).sort((a,b) => a.localeCompare(b));
+        const requiredAvail = available.filter(f => REQUIRED_FUNCTIONS.has(f)).sort((a,b) => a.localeCompare(b));
         const optionalAvail = available.filter(f => !REQUIRED_FUNCTIONS.has(f)).sort((a,b) => a.localeCompare(b));
 
         panel.innerHTML = "";
@@ -516,7 +514,7 @@
           opt.className = "function-option";
           opt.innerHTML = `<span>${f}</span><span class="req-badge">Required</span>`;
           if (!REQUIRED_FUNCTIONS.has(f)) opt.querySelector(".req-badge").remove();
-          opt.onclick = (e) => { e.stopPropagation(); selectFunction(entry, f); };
+          opt.onclick = (e) => {e.stopPropagation(); selectFunction(entry, f);};
           panel.appendChild(opt);
         };
 
@@ -672,8 +670,8 @@
           const mob = entry.querySelector("[name='contactMobile']").value.trim();
           const work = entry.querySelector("[name='contactWork']").value.trim();
           const digits = v => v.replace(/\D/g, "").length;
-          const mobOk = mob   === "" || digits(mob)  === 10;
-          const workOk = work  === "" || digits(work) === 10;
+          const mobOk = mob === "" || digits(mob) === 10;
+          const workOk = work === "" || digits(work) === 10;
           const emailOk = email === "" || email.includes("@");
           const hasContact = (mob && mobOk) || (work && workOk) || (email && emailOk);
           if (!name || !hasContact || !mobOk || !workOk) contactsOk = false;
@@ -691,21 +689,21 @@
         if (list.children.length <= 1) {
           // Clear but keep one entry
           entry.querySelectorAll("input[type='text'], input[type='tel'], input[type='email']")
-              .forEach(i => { i.value = ""; i.classList.remove("invalid"); });
-          getContactFunctions(entry).forEach(f => { assignedFunctions[f] = null; });
+              .forEach(i => {i.value = ""; i.classList.remove("invalid");});
+          getContactFunctions(entry).forEach(f => {assignedFunctions[f] = null;});
           entry.querySelectorAll(".function-tag").forEach(t => t.remove());
           updateTriggerText(entry);
           const pCb = entry.querySelector("[name='contactPrimary']");
           const sCb = entry.querySelector("[name='contactSecondary']");
-          if (pCb.checked) { pCb.checked = false; onRoleChange(pCb, "primary"); }
-          if (sCb.checked) { sCb.checked = false; onRoleChange(sCb, "secondary"); }
+          if (pCb.checked) {pCb.checked = false; onRoleChange(pCb, "primary");}
+          if (sCb.checked) {sCb.checked = false; onRoleChange(sCb, "secondary");}
           renderRequiredTracker();
           return;
         }
 
         // Free functions held by this entry
-        getContactFunctions(entry).forEach(f => { assignedFunctions[f] = null; });
-        if (primaryEntry === entry)   primaryEntry = null;
+        getContactFunctions(entry).forEach(f => {assignedFunctions[f] = null;});
+        if (primaryEntry === entry) primaryEntry = null;
         if (secondaryEntry === entry) secondaryEntry = null;
 
         entry.remove();
@@ -743,9 +741,9 @@
       document.addEventListener("input", function(e) {
         if (e.target.name === "contactMobile" || e.target.name === "contactWork") {
           let v = e.target.value.replace(/\D/g, "").substring(0, 10);
-          if (v.length >= 7)      v = "(" + v.substring(0,3) + ") " + v.substring(3,6) + "-" + v.substring(6);
+          if (v.length >= 7) v = "(" + v.substring(0,3) + ") " + v.substring(3,6) + "-" + v.substring(6);
           else if (v.length >= 4) v = "(" + v.substring(0,3) + ") " + v.substring(3);
-          else if (v.length > 0)  v = "(" + v;
+          else if (v.length > 0) v = "(" + v;
           e.target.value = v;
           // Red outline if partially filled (1–9 digits), clear if empty or complete
           const digits = e.target.value.replace(/\D/g, "").length;
@@ -759,19 +757,19 @@
         const contacts = [];
         document.querySelectorAll(".contact-entry").forEach(entry => {
           contacts.push({
-            fullName:  entry.querySelector("[name='contactName']").value.trim(),
-            mobile:    entry.querySelector("[name='contactMobile']").value.trim(),
+            fullName: entry.querySelector("[name='contactName']").value.trim(),
+            mobile: entry.querySelector("[name='contactMobile']").value.trim(),
             workPhone: entry.querySelector("[name='contactWork']").value.trim(),
             extension: entry.querySelector("[name='contactExt']").value.trim(),
-            email:     entry.querySelector("[name='contactEmail']").value.trim(),
-            role:      entry.querySelector("[name='contactPrimary']").checked   ? "Primary"
-                    : entry.querySelector("[name='contactSecondary']").checked ? "Secondary" : "",
+            email: entry.querySelector("[name='contactEmail']").value.trim(),
+            role: entry.querySelector("[name='contactPrimary']").checked ? "Primary"
+                : entry.querySelector("[name='contactSecondary']").checked ? "Secondary" : "",
             functions: getContactFunctions(entry)
           });
         });
         return {
           vendorName: document.getElementById("vendorName").value.trim(),
-          vendorId:   document.getElementById("vendorId").value.trim(),
+          vendorId: document.getElementById("vendorId").value.trim(),
           contacts
         };
       }
@@ -790,8 +788,8 @@
           const mob = entry.querySelector("[name='contactMobile']").value.trim();
           const work = entry.querySelector("[name='contactWork']").value.trim();
           const digits = v => v.replace(/\D/g, "").length;
-          const mobOk = mob   === "" || digits(mob)  === 10;
-          const workOk = work  === "" || digits(work) === 10;
+          const mobOk = mob === "" || digits(mob) === 10;
+          const workOk = work === "" || digits(work) === 10;
           const emailOk = email === "" || email.includes("@");
           const hasContact = (mob && mobOk) || (work && workOk) || (email && emailOk);
           if (!name || !hasContact || !mobOk || !workOk) contactsOk = false;
@@ -814,7 +812,7 @@
         try {
           const res = await fetch(ENDPOINT, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(payload)
           });
 
